@@ -29,7 +29,7 @@ FileMessage _$FileMessageFromJson(Map<String, dynamic> json) => FileMessage(
 
 Map<String, dynamic> _$FileMessageToJson(FileMessage instance) {
   final val = <String, dynamic>{
-    'author': instance.author.toJson(),
+    'author': instance.author?.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {

@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+import '../event.dart';
 import '../message.dart';
 import '../preview_data.dart' show PreviewData;
 import '../user.dart' show User;
@@ -27,6 +28,7 @@ abstract class TextMessage extends Message {
     required this.text,
     MessageType? type,
     super.updatedAt,
+    super.event,
   }) : super(type: type ?? MessageType.text);
 
   const factory TextMessage({
@@ -43,6 +45,7 @@ abstract class TextMessage extends Message {
     required String text,
     MessageType? type,
     int? updatedAt,
+    Event? event,
   }) = _TextMessage;
 
   /// Creates a text message from a map (decoded JSON).
@@ -136,6 +139,7 @@ class _TextMessage extends TextMessage {
     required super.text,
     super.type,
     super.updatedAt,
+    super.event,
   }) : super._();
 
   @override
@@ -152,6 +156,7 @@ class _TextMessage extends TextMessage {
     dynamic status = _Unset,
     String? text,
     dynamic updatedAt = _Unset,
+    Event? event,
   }) =>
       _TextMessage(
         author: author ?? this.author,
@@ -173,6 +178,7 @@ class _TextMessage extends TextMessage {
         status: status == _Unset ? this.status : status as Status?,
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
+        event: event ?? this.event,
       );
 }
 

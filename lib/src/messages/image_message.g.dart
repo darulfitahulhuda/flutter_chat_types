@@ -25,11 +25,13 @@ ImageMessage _$ImageMessageFromJson(Map<String, dynamic> json) => ImageMessage(
       updatedAt: json['updatedAt'] as int?,
       uri: json['uri'] as String,
       width: (json['width'] as num?)?.toDouble(),
+      event: Event.fromJson(json['event']),
     );
 
 Map<String, dynamic> _$ImageMessageToJson(ImageMessage instance) {
   final val = <String, dynamic>{
-    'author': instance.author.toJson(),
+    'author': instance.author?.toJson(),
+    'event': instance.event?.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {

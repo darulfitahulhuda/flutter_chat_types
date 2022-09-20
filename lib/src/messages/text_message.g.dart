@@ -24,11 +24,13 @@ TextMessage _$TextMessageFromJson(Map<String, dynamic> json) => TextMessage(
       text: json['text'] as String,
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
       updatedAt: json['updatedAt'] as int?,
+      event: Event.fromJson(json['event']),
     );
 
 Map<String, dynamic> _$TextMessageToJson(TextMessage instance) {
   final val = <String, dynamic>{
-    'author': instance.author.toJson(),
+    'author': instance.author?.toJson(),
+    'event': instance.event?.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {

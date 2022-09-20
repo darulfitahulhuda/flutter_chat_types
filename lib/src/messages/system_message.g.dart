@@ -26,7 +26,7 @@ SystemMessage _$SystemMessageFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SystemMessageToJson(SystemMessage instance) {
   final val = <String, dynamic>{
-    'author': instance.author.toJson(),
+    'author': instance.author?.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {

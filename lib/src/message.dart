@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
+import 'event.dart';
 import 'messages/custom_message.dart';
 import 'messages/file_message.dart';
 import 'messages/image_message.dart';
@@ -20,7 +21,7 @@ enum Status { delivered, error, seen, sending, sent }
 @immutable
 abstract class Message extends Equatable {
   const Message({
-    required this.author,
+    this.author,
     this.createdAt,
     required this.id,
     this.metadata,
@@ -31,6 +32,7 @@ abstract class Message extends Equatable {
     this.status,
     required this.type,
     this.updatedAt,
+    this.event,
   });
 
   /// Creates a particular message from a map (decoded JSON).
@@ -58,7 +60,8 @@ abstract class Message extends Equatable {
   }
 
   /// User who sent this message.
-  final User author;
+  final User? author;
+  final Event? event;
 
   /// Created message timestamp, in ms.
   final int? createdAt;
