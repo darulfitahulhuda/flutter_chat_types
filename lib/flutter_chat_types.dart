@@ -1,5 +1,6 @@
 library flutter_chat_types;
 
+export 'src/event.dart';
 export 'src/message.dart';
 export 'src/messages/custom_message.dart';
 export 'src/messages/file_message.dart';
