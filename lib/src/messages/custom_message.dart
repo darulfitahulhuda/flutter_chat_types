@@ -25,6 +25,7 @@ abstract class CustomMessage extends Message {
     super.status,
     MessageType? type,
     super.updatedAt,
+    super.anotherId,
   }) : super(type: type ?? MessageType.custom);
 
   const factory CustomMessage({
@@ -39,6 +40,7 @@ abstract class CustomMessage extends Message {
     Status? status,
     MessageType? type,
     int? updatedAt,
+    int? anotherId,
   }) = _CustomMessage;
 
   /// Creates a custom message from a map (decoded JSON).
@@ -56,6 +58,7 @@ abstract class CustomMessage extends Message {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    int? anotherId,
   }) =>
       _CustomMessage(
         author: author,
@@ -69,6 +72,7 @@ abstract class CustomMessage extends Message {
         status: status,
         type: MessageType.custom,
         updatedAt: updatedAt,
+        anotherId: anotherId,
       );
 
   /// Equatable props.
@@ -83,6 +87,7 @@ abstract class CustomMessage extends Message {
         roomId,
         status,
         updatedAt,
+        anotherId,
       ];
 
   @override
@@ -119,6 +124,7 @@ class _CustomMessage extends CustomMessage {
     super.status,
     super.type,
     super.updatedAt,
+    super.anotherId,
   }) : super._();
 
   @override

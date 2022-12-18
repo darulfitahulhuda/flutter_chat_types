@@ -29,6 +29,7 @@ abstract class FileMessage extends Message {
     MessageType? type,
     super.updatedAt,
     required this.uri,
+    super.anotherId,
   }) : super(type: type ?? MessageType.file);
 
   const factory FileMessage({
@@ -48,6 +49,7 @@ abstract class FileMessage extends Message {
     MessageType? type,
     int? updatedAt,
     required String uri,
+    int? anotherId,
   }) = _FileMessage;
 
   /// Creates a file message from a map (decoded JSON).
@@ -66,6 +68,7 @@ abstract class FileMessage extends Message {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    int? anotherId,
   }) =>
       _FileMessage(
         author: author,
@@ -84,6 +87,7 @@ abstract class FileMessage extends Message {
         type: MessageType.file,
         updatedAt: updatedAt,
         uri: partialFile.uri,
+        anotherId: anotherId,
       );
 
   /// Specify whether the message content is currently being loaded.
@@ -118,6 +122,7 @@ abstract class FileMessage extends Message {
         status,
         updatedAt,
         uri,
+        anotherId,
       ];
 
   @override
@@ -163,6 +168,7 @@ class _FileMessage extends FileMessage {
     super.type,
     super.updatedAt,
     required super.uri,
+    super.anotherId,
   }) : super._();
 
   @override

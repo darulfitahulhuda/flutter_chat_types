@@ -33,6 +33,7 @@ abstract class Message extends Equatable {
     required this.type,
     this.updatedAt,
     this.event,
+    this.anotherId,
   });
 
   /// Creates a particular message from a map (decoded JSON).
@@ -92,6 +93,8 @@ abstract class Message extends Equatable {
 
   /// Updated message timestamp, in ms.
   final int? updatedAt;
+
+  final int? anotherId;
 
   /// Creates a copy of the message with an updated data.
   Message copyWith({

@@ -29,6 +29,7 @@ abstract class TextMessage extends Message {
     MessageType? type,
     super.updatedAt,
     super.event,
+    super.anotherId,
   }) : super(type: type ?? MessageType.text);
 
   const factory TextMessage({
@@ -46,6 +47,7 @@ abstract class TextMessage extends Message {
     MessageType? type,
     int? updatedAt,
     Event? event,
+    int? anotherId,
   }) = _TextMessage;
 
   /// Creates a text message from a map (decoded JSON).
@@ -63,6 +65,7 @@ abstract class TextMessage extends Message {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    int? anotherId,
   }) =>
       _TextMessage(
         author: author,
@@ -78,6 +81,7 @@ abstract class TextMessage extends Message {
         text: partialText.text,
         type: MessageType.text,
         updatedAt: updatedAt,
+        anotherId: anotherId,
       );
 
   /// See [PreviewData].
@@ -100,6 +104,7 @@ abstract class TextMessage extends Message {
         status,
         text,
         updatedAt,
+        anotherId,
       ];
 
   @override
@@ -140,6 +145,7 @@ class _TextMessage extends TextMessage {
     super.type,
     super.updatedAt,
     super.event,
+    super.anotherId,
   }) : super._();
 
   @override

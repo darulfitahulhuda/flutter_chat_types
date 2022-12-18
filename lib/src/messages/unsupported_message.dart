@@ -26,6 +26,7 @@ abstract class UnsupportedMessage extends Message {
     super.status,
     MessageType? type,
     super.updatedAt,
+    super.anotherId,
   }) : super(type: type ?? MessageType.unsupported);
 
   const factory UnsupportedMessage({
@@ -40,6 +41,7 @@ abstract class UnsupportedMessage extends Message {
     Status? status,
     MessageType? type,
     int? updatedAt,
+    int? anotherId,
   }) = _UnsupportedMessage;
 
   /// Creates an unsupported message from a map (decoded JSON).
@@ -94,6 +96,7 @@ class _UnsupportedMessage extends UnsupportedMessage {
     super.status,
     super.type,
     super.updatedAt,
+    super.anotherId,
   }) : super._();
 
   @override

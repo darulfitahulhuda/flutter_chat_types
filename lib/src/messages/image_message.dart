@@ -31,6 +31,7 @@ abstract class ImageMessage extends Message {
     required this.uri,
     this.width,
     super.event,
+    super.anotherId,
   }) : super(type: type ?? MessageType.image);
 
   const factory ImageMessage({
@@ -51,6 +52,7 @@ abstract class ImageMessage extends Message {
     required String uri,
     double? width,
     Event? event,
+    int? anotherId,
   }) = _ImageMessage;
 
   /// Creates an image message from a map (decoded JSON).
@@ -68,6 +70,7 @@ abstract class ImageMessage extends Message {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    int? anotherId,
   }) =>
       _ImageMessage(
         author: author,
@@ -86,6 +89,7 @@ abstract class ImageMessage extends Message {
         updatedAt: updatedAt,
         uri: partialImage.uri,
         width: partialImage.width,
+        anotherId: anotherId,
       );
 
   /// Image height in pixels.
@@ -168,6 +172,7 @@ class _ImageMessage extends ImageMessage {
     required super.uri,
     super.width,
     super.event,
+    super.anotherId,
   }) : super._();
 
   @override
