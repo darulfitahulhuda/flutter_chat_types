@@ -62,6 +62,7 @@ const _$StatusEnumMap = {
   Status.seen: 'seen',
   Status.sending: 'sending',
   Status.sent: 'sent',
+  Status.read: 'read',
 };
 
 const _$MessageTypeEnumMap = {

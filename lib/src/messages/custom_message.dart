@@ -26,6 +26,7 @@ abstract class CustomMessage extends Message {
     MessageType? type,
     super.updatedAt,
     super.anotherId,
+    super.channelId,
   }) : super(type: type ?? MessageType.custom);
 
   const factory CustomMessage({
@@ -102,6 +103,7 @@ abstract class CustomMessage extends Message {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    int? channelId,
   });
 
   /// Converts a custom message to the map representation,
@@ -125,6 +127,7 @@ class _CustomMessage extends CustomMessage {
     super.type,
     super.updatedAt,
     super.anotherId,
+    super.channelId,
   }) : super._();
 
   @override
@@ -139,6 +142,7 @@ class _CustomMessage extends CustomMessage {
     dynamic showStatus = _Unset,
     dynamic status = _Unset,
     dynamic updatedAt = _Unset,
+    dynamic channelId = _Unset,
   }) =>
       _CustomMessage(
         author: author ?? this.author,
@@ -156,6 +160,7 @@ class _CustomMessage extends CustomMessage {
             showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
+        channelId: channelId == _Unset ? this.channelId : channelId as int?,
       );
 }
 

@@ -30,6 +30,7 @@ abstract class FileMessage extends Message {
     super.updatedAt,
     required this.uri,
     super.anotherId,
+    super.channelId,
   }) : super(type: type ?? MessageType.file);
 
   const factory FileMessage({
@@ -142,6 +143,7 @@ abstract class FileMessage extends Message {
     Status? status,
     int? updatedAt,
     String? uri,
+    int? channelId,
   });
 
   /// Converts a file message to the map representation, encodable to JSON.
@@ -169,6 +171,7 @@ class _FileMessage extends FileMessage {
     super.updatedAt,
     required super.uri,
     super.anotherId,
+    super.channelId,
   }) : super._();
 
   @override
@@ -190,6 +193,7 @@ class _FileMessage extends FileMessage {
     dynamic updatedAt = _Unset,
     String? uri,
     dynamic width = _Unset,
+    dynamic channelId = _Unset,
   }) =>
       _FileMessage(
         author: author ?? this.author,
@@ -212,6 +216,7 @@ class _FileMessage extends FileMessage {
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         uri: uri ?? this.uri,
+        channelId: channelId == _Unset ? this.channelId : channelId as int?,
       );
 }
 

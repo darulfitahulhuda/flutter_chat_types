@@ -30,6 +30,7 @@ abstract class TextMessage extends Message {
     super.updatedAt,
     super.event,
     super.anotherId,
+    super.channelId,
   }) : super(type: type ?? MessageType.text);
 
   const factory TextMessage({
@@ -105,6 +106,7 @@ abstract class TextMessage extends Message {
         text,
         updatedAt,
         anotherId,
+        channelId,
       ];
 
   @override
@@ -121,6 +123,7 @@ abstract class TextMessage extends Message {
     Status? status,
     String? text,
     int? updatedAt,
+    int? channelId,
   });
 
   /// Converts a text message to the map representation, encodable to JSON.
@@ -146,6 +149,7 @@ class _TextMessage extends TextMessage {
     super.updatedAt,
     super.event,
     super.anotherId,
+    super.channelId,
   }) : super._();
 
   @override
@@ -163,6 +167,7 @@ class _TextMessage extends TextMessage {
     String? text,
     dynamic updatedAt = _Unset,
     Event? event,
+    dynamic channelId = _Unset,
   }) =>
       _TextMessage(
         author: author ?? this.author,
@@ -185,6 +190,7 @@ class _TextMessage extends TextMessage {
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         event: event ?? this.event,
+        channelId: channelId == _Unset ? this.channelId : channelId as int?,
       );
 }
 

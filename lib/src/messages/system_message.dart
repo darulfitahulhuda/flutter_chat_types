@@ -25,6 +25,8 @@ abstract class SystemMessage extends Message {
     required this.text,
     MessageType? type,
     super.updatedAt,
+    super.anotherId,
+    super.channelId,
   }) : super(type: type ?? MessageType.system);
 
   const factory SystemMessage({
@@ -77,6 +79,8 @@ abstract class SystemMessage extends Message {
     Status? status,
     String? text,
     int? updatedAt,
+    int? anotherId,
+    int? channelId,
   });
 
   /// Converts a custom message to the map representation,
@@ -100,6 +104,8 @@ class _SystemMessage extends SystemMessage {
     required super.text,
     super.type,
     super.updatedAt,
+    super.anotherId,
+    super.channelId,
   }) : super._();
 
   @override
@@ -115,6 +121,8 @@ class _SystemMessage extends SystemMessage {
     dynamic status = _Unset,
     String? text,
     dynamic updatedAt = _Unset,
+    dynamic anotherId = _Unset,
+    dynamic channelId = _Unset,
   }) =>
       _SystemMessage(
         author: author ?? this.author,
@@ -133,6 +141,8 @@ class _SystemMessage extends SystemMessage {
         status: status == _Unset ? this.status : status as Status?,
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
+        anotherId: anotherId == _Unset ? this.anotherId : anotherId as int?,
+        channelId: channelId == _Unset ? this.channelId : channelId as int?,
       );
 }
 
