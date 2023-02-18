@@ -49,6 +49,7 @@ abstract class TextMessage extends Message {
     int? updatedAt,
     Event? event,
     int? anotherId,
+    int? channelId,
   }) = _TextMessage;
 
   /// Creates a text message from a map (decoded JSON).
@@ -67,6 +68,7 @@ abstract class TextMessage extends Message {
     Status? status,
     int? updatedAt,
     int? anotherId,
+    int? channelId,
   }) =>
       _TextMessage(
         author: author,
@@ -83,6 +85,7 @@ abstract class TextMessage extends Message {
         type: MessageType.text,
         updatedAt: updatedAt,
         anotherId: anotherId,
+        channelId: channelId,
       );
 
   /// See [PreviewData].
