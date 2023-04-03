@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+import '../event.dart';
 import '../message.dart';
 import '../user.dart' show User;
 import 'partial_file.dart';
@@ -31,6 +32,8 @@ abstract class FileMessage extends Message {
     required this.uri,
     super.anotherId,
     super.channelId,
+    super.confirmationId,
+    super.event,
   }) : super(type: type ?? MessageType.file);
 
   const factory FileMessage({
@@ -51,6 +54,8 @@ abstract class FileMessage extends Message {
     int? updatedAt,
     required String uri,
     int? anotherId,
+    String? confirmationId,
+    Event? event,
   }) = _FileMessage;
 
   /// Creates a file message from a map (decoded JSON).
@@ -144,6 +149,7 @@ abstract class FileMessage extends Message {
     int? updatedAt,
     String? uri,
     int? channelId,
+    String? confirmationId,
   });
 
   /// Converts a file message to the map representation, encodable to JSON.
@@ -172,6 +178,8 @@ class _FileMessage extends FileMessage {
     required super.uri,
     super.anotherId,
     super.channelId,
+    super.confirmationId,
+    super.event,
   }) : super._();
 
   @override
@@ -194,6 +202,8 @@ class _FileMessage extends FileMessage {
     String? uri,
     dynamic width = _Unset,
     dynamic channelId = _Unset,
+    dynamic confirmationId = _Unset,
+    dynamic event = _Unset,
   }) =>
       _FileMessage(
         author: author ?? this.author,
@@ -217,6 +227,10 @@ class _FileMessage extends FileMessage {
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         uri: uri ?? this.uri,
         channelId: channelId == _Unset ? this.channelId : channelId as int?,
+        event: event == _Unset ? this.event : event as Event?,
+        confirmationId: confirmationId == _Unset
+            ? this.confirmationId
+            : confirmationId as String?,
       );
 }
 

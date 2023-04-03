@@ -25,14 +25,15 @@ ImageMessage _$ImageMessageFromJson(Map<String, dynamic> json) => ImageMessage(
       updatedAt: json['updatedAt'] as int?,
       uri: json['uri'] as String,
       width: (json['width'] as num?)?.toDouble(),
-      event: Event.fromJson(json['event']),
+      event: json['event'] == null
+          ? null
+          : Event.fromJson(json['event'] as Map<String, dynamic>),
+      anotherId: json['anotherId'] as int?,
+      confirmationId: json['confirmationId'] as String?,
     );
 
 Map<String, dynamic> _$ImageMessageToJson(ImageMessage instance) {
-  final val = <String, dynamic>{
-    'author': instance.author?.toJson(),
-    'event': instance.event?.toJson(),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -40,6 +41,8 @@ Map<String, dynamic> _$ImageMessageToJson(ImageMessage instance) {
     }
   }
 
+  writeNotNull('author', instance.author?.toJson());
+  writeNotNull('event', instance.event?.toJson());
   writeNotNull('createdAt', instance.createdAt);
   val['id'] = instance.id;
   writeNotNull('metadata', instance.metadata);
@@ -50,6 +53,8 @@ Map<String, dynamic> _$ImageMessageToJson(ImageMessage instance) {
   writeNotNull('status', _$StatusEnumMap[instance.status]);
   val['type'] = _$MessageTypeEnumMap[instance.type]!;
   writeNotNull('updatedAt', instance.updatedAt);
+  writeNotNull('anotherId', instance.anotherId);
+  writeNotNull('confirmationId', instance.confirmationId);
   writeNotNull('height', instance.height);
   val['name'] = instance.name;
   val['size'] = instance.size;

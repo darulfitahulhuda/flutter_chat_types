@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+import '../event.dart';
 import '../message.dart';
 import '../user.dart' show User;
 
@@ -28,6 +29,8 @@ abstract class UnsupportedMessage extends Message {
     super.updatedAt,
     super.anotherId,
     super.channelId,
+    super.confirmationId,
+    super.event,
   }) : super(type: type ?? MessageType.unsupported);
 
   const factory UnsupportedMessage({
@@ -44,6 +47,8 @@ abstract class UnsupportedMessage extends Message {
     int? updatedAt,
     int? anotherId,
     int? channelId,
+    String? confirmationId,
+    Event? event,
   }) = _UnsupportedMessage;
 
   /// Creates an unsupported message from a map (decoded JSON).
@@ -62,6 +67,7 @@ abstract class UnsupportedMessage extends Message {
         roomId,
         status,
         updatedAt,
+        confirmationId,
       ];
 
   @override
@@ -77,6 +83,7 @@ abstract class UnsupportedMessage extends Message {
     Status? status,
     int? updatedAt,
     int? channelId,
+    String? confirmationId,
   });
 
   /// Converts an unsupported message to the map representation,
@@ -101,6 +108,8 @@ class _UnsupportedMessage extends UnsupportedMessage {
     super.updatedAt,
     super.anotherId,
     super.channelId,
+    super.confirmationId,
+    super.event,
   }) : super._();
 
   @override
@@ -116,6 +125,8 @@ class _UnsupportedMessage extends UnsupportedMessage {
     dynamic status = _Unset,
     dynamic updatedAt = _Unset,
     dynamic channelId = _Unset,
+    dynamic confirmationId = _Unset,
+    dynamic event = _Unset,
   }) =>
       _UnsupportedMessage(
         author: author ?? this.author,
@@ -134,6 +145,10 @@ class _UnsupportedMessage extends UnsupportedMessage {
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         channelId: channelId == _Unset ? this.channelId : channelId as int?,
+        event: event == _Unset ? this.event : event as Event?,
+        confirmationId: confirmationId == _Unset
+            ? this.confirmationId
+            : confirmationId as String?,
       );
 }
 

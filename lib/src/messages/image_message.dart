@@ -33,6 +33,7 @@ abstract class ImageMessage extends Message {
     super.event,
     super.anotherId,
     super.channelId,
+    super.confirmationId,
   }) : super(type: type ?? MessageType.image);
 
   const factory ImageMessage({
@@ -54,6 +55,7 @@ abstract class ImageMessage extends Message {
     double? width,
     Event? event,
     int? anotherId,
+    String? confirmationId,
   }) = _ImageMessage;
 
   /// Creates an image message from a map (decoded JSON).
@@ -147,6 +149,7 @@ abstract class ImageMessage extends Message {
     double? width,
     Event? event,
     int? channelId,
+    String? confirmationId,
   });
 
   /// Converts an image message to the map representation, encodable to JSON.
@@ -176,6 +179,7 @@ class _ImageMessage extends ImageMessage {
     super.event,
     super.anotherId,
     super.channelId,
+    super.confirmationId,
   }) : super._();
 
   @override
@@ -197,6 +201,7 @@ class _ImageMessage extends ImageMessage {
     dynamic width = _Unset,
     Event? event,
     dynamic channelId = _Unset,
+    dynamic confirmationId = _Unset,
   }) =>
       _ImageMessage(
         author: author ?? this.author,
@@ -221,6 +226,9 @@ class _ImageMessage extends ImageMessage {
         width: width == _Unset ? this.width : width as double?,
         event: event ?? this.event,
         channelId: channelId == _Unset ? this.channelId : channelId as int?,
+        confirmationId: confirmationId == _Unset
+            ? this.confirmationId
+            : confirmationId as String?,
       );
 }
 

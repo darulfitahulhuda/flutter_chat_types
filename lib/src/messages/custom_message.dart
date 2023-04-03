@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+import '../event.dart';
 import '../message.dart';
 import '../user.dart' show User;
 import 'partial_custom.dart';
@@ -27,6 +28,8 @@ abstract class CustomMessage extends Message {
     super.updatedAt,
     super.anotherId,
     super.channelId,
+    super.confirmationId,
+    super.event,
   }) : super(type: type ?? MessageType.custom);
 
   const factory CustomMessage({
@@ -42,6 +45,8 @@ abstract class CustomMessage extends Message {
     MessageType? type,
     int? updatedAt,
     int? anotherId,
+    String? confirmationId,
+    Event? event,
   }) = _CustomMessage;
 
   /// Creates a custom message from a map (decoded JSON).
@@ -104,6 +109,7 @@ abstract class CustomMessage extends Message {
     Status? status,
     int? updatedAt,
     int? channelId,
+    String? confirmationId,
   });
 
   /// Converts a custom message to the map representation,
@@ -128,6 +134,8 @@ class _CustomMessage extends CustomMessage {
     super.updatedAt,
     super.anotherId,
     super.channelId,
+    super.confirmationId,
+    super.event,
   }) : super._();
 
   @override
@@ -143,6 +151,8 @@ class _CustomMessage extends CustomMessage {
     dynamic status = _Unset,
     dynamic updatedAt = _Unset,
     dynamic channelId = _Unset,
+    dynamic confirmationId = _Unset,
+    dynamic event = _Unset,
   }) =>
       _CustomMessage(
         author: author ?? this.author,
@@ -161,6 +171,10 @@ class _CustomMessage extends CustomMessage {
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         channelId: channelId == _Unset ? this.channelId : channelId as int?,
+        event: event == _Unset ? this.event : event as Event?,
+        confirmationId: confirmationId == _Unset
+            ? this.confirmationId
+            : confirmationId as String?,
       );
 }
 

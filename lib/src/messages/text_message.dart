@@ -31,6 +31,7 @@ abstract class TextMessage extends Message {
     super.event,
     super.anotherId,
     super.channelId,
+    super.confirmationId,
   }) : super(type: type ?? MessageType.text);
 
   const factory TextMessage({
@@ -50,6 +51,7 @@ abstract class TextMessage extends Message {
     Event? event,
     int? anotherId,
     int? channelId,
+    String? confirmationId,
   }) = _TextMessage;
 
   /// Creates a text message from a map (decoded JSON).
@@ -69,6 +71,7 @@ abstract class TextMessage extends Message {
     int? updatedAt,
     int? anotherId,
     int? channelId,
+    String? confirmationId,
   }) =>
       _TextMessage(
         author: author,
@@ -86,6 +89,7 @@ abstract class TextMessage extends Message {
         updatedAt: updatedAt,
         anotherId: anotherId,
         channelId: channelId,
+        confirmationId: confirmationId,
       );
 
   /// See [PreviewData].
@@ -110,6 +114,7 @@ abstract class TextMessage extends Message {
         updatedAt,
         anotherId,
         channelId,
+        confirmationId,
       ];
 
   @override
@@ -127,6 +132,7 @@ abstract class TextMessage extends Message {
     String? text,
     int? updatedAt,
     int? channelId,
+    String? confirmationId,
   });
 
   /// Converts a text message to the map representation, encodable to JSON.
@@ -153,6 +159,7 @@ class _TextMessage extends TextMessage {
     super.event,
     super.anotherId,
     super.channelId,
+    super.confirmationId,
   }) : super._();
 
   @override
@@ -171,6 +178,7 @@ class _TextMessage extends TextMessage {
     dynamic updatedAt = _Unset,
     Event? event,
     dynamic channelId = _Unset,
+    dynamic confirmationId = _Unset,
   }) =>
       _TextMessage(
         author: author ?? this.author,
@@ -194,6 +202,9 @@ class _TextMessage extends TextMessage {
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         event: event ?? this.event,
         channelId: channelId == _Unset ? this.channelId : channelId as int?,
+        confirmationId: confirmationId == _Unset
+            ? this.confirmationId
+            : confirmationId as String?,
       );
 }
 

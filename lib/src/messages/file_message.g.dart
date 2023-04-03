@@ -25,12 +25,15 @@ FileMessage _$FileMessageFromJson(Map<String, dynamic> json) => FileMessage(
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
       updatedAt: json['updatedAt'] as int?,
       uri: json['uri'] as String,
+      anotherId: json['anotherId'] as int?,
+      confirmationId: json['confirmationId'] as String?,
+      event: json['event'] == null
+          ? null
+          : Event.fromJson(json['event'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$FileMessageToJson(FileMessage instance) {
-  final val = <String, dynamic>{
-    'author': instance.author?.toJson(),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -38,6 +41,8 @@ Map<String, dynamic> _$FileMessageToJson(FileMessage instance) {
     }
   }
 
+  writeNotNull('author', instance.author?.toJson());
+  writeNotNull('event', instance.event?.toJson());
   writeNotNull('createdAt', instance.createdAt);
   val['id'] = instance.id;
   writeNotNull('metadata', instance.metadata);
@@ -48,6 +53,8 @@ Map<String, dynamic> _$FileMessageToJson(FileMessage instance) {
   writeNotNull('status', _$StatusEnumMap[instance.status]);
   val['type'] = _$MessageTypeEnumMap[instance.type]!;
   writeNotNull('updatedAt', instance.updatedAt);
+  writeNotNull('anotherId', instance.anotherId);
+  writeNotNull('confirmationId', instance.confirmationId);
   writeNotNull('isLoading', instance.isLoading);
   writeNotNull('mimeType', instance.mimeType);
   val['name'] = instance.name;

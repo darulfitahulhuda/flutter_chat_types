@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+import '../event.dart';
 import '../message.dart';
 import '../user.dart' show User;
 
@@ -27,6 +28,8 @@ abstract class SystemMessage extends Message {
     super.updatedAt,
     super.anotherId,
     super.channelId,
+    super.confirmationId,
+    super.event,
   }) : super(type: type ?? MessageType.system);
 
   const factory SystemMessage({
@@ -42,6 +45,8 @@ abstract class SystemMessage extends Message {
     required String text,
     MessageType? type,
     int? updatedAt,
+    String? confirmationId,
+    Event? event,
   }) = _SystemMessage;
 
   /// Creates a custom message from a map (decoded JSON).
@@ -81,6 +86,7 @@ abstract class SystemMessage extends Message {
     int? updatedAt,
     int? anotherId,
     int? channelId,
+    String? confirmationId,
   });
 
   /// Converts a custom message to the map representation,
@@ -106,6 +112,8 @@ class _SystemMessage extends SystemMessage {
     super.updatedAt,
     super.anotherId,
     super.channelId,
+    super.confirmationId,
+    super.event,
   }) : super._();
 
   @override
@@ -123,6 +131,8 @@ class _SystemMessage extends SystemMessage {
     dynamic updatedAt = _Unset,
     dynamic anotherId = _Unset,
     dynamic channelId = _Unset,
+    dynamic confirmationId = _Unset,
+    dynamic event = _Unset,
   }) =>
       _SystemMessage(
         author: author ?? this.author,
@@ -143,6 +153,10 @@ class _SystemMessage extends SystemMessage {
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         anotherId: anotherId == _Unset ? this.anotherId : anotherId as int?,
         channelId: channelId == _Unset ? this.channelId : channelId as int?,
+        event: event == _Unset ? this.event : event as Event?,
+        confirmationId: confirmationId == _Unset
+            ? this.confirmationId
+            : confirmationId as String?,
       );
 }
 

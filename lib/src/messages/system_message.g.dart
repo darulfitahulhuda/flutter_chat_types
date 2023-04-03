@@ -22,12 +22,14 @@ SystemMessage _$SystemMessageFromJson(Map<String, dynamic> json) =>
       text: json['text'] as String,
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
       updatedAt: json['updatedAt'] as int?,
+      confirmationId: json['confirmationId'] as String?,
+      event: json['event'] == null
+          ? null
+          : Event.fromJson(json['event'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SystemMessageToJson(SystemMessage instance) {
-  final val = <String, dynamic>{
-    'author': instance.author?.toJson(),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -35,6 +37,8 @@ Map<String, dynamic> _$SystemMessageToJson(SystemMessage instance) {
     }
   }
 
+  writeNotNull('author', instance.author?.toJson());
+  writeNotNull('event', instance.event?.toJson());
   writeNotNull('createdAt', instance.createdAt);
   val['id'] = instance.id;
   writeNotNull('metadata', instance.metadata);
@@ -45,6 +49,7 @@ Map<String, dynamic> _$SystemMessageToJson(SystemMessage instance) {
   writeNotNull('status', _$StatusEnumMap[instance.status]);
   val['type'] = _$MessageTypeEnumMap[instance.type]!;
   writeNotNull('updatedAt', instance.updatedAt);
+  writeNotNull('confirmationId', instance.confirmationId);
   val['text'] = instance.text;
   return val;
 }

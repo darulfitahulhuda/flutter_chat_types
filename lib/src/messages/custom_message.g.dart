@@ -21,12 +21,15 @@ CustomMessage _$CustomMessageFromJson(Map<String, dynamic> json) =>
       status: $enumDecodeNullable(_$StatusEnumMap, json['status']),
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
       updatedAt: json['updatedAt'] as int?,
+      anotherId: json['anotherId'] as int?,
+      confirmationId: json['confirmationId'] as String?,
+      event: json['event'] == null
+          ? null
+          : Event.fromJson(json['event'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CustomMessageToJson(CustomMessage instance) {
-  final val = <String, dynamic>{
-    'author': instance.author?.toJson(),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -34,6 +37,8 @@ Map<String, dynamic> _$CustomMessageToJson(CustomMessage instance) {
     }
   }
 
+  writeNotNull('author', instance.author?.toJson());
+  writeNotNull('event', instance.event?.toJson());
   writeNotNull('createdAt', instance.createdAt);
   val['id'] = instance.id;
   writeNotNull('metadata', instance.metadata);
@@ -44,6 +49,8 @@ Map<String, dynamic> _$CustomMessageToJson(CustomMessage instance) {
   writeNotNull('status', _$StatusEnumMap[instance.status]);
   val['type'] = _$MessageTypeEnumMap[instance.type]!;
   writeNotNull('updatedAt', instance.updatedAt);
+  writeNotNull('anotherId', instance.anotherId);
+  writeNotNull('confirmationId', instance.confirmationId);
   return val;
 }
 

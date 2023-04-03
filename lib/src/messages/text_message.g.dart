@@ -24,14 +24,16 @@ TextMessage _$TextMessageFromJson(Map<String, dynamic> json) => TextMessage(
       text: json['text'] as String,
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
       updatedAt: json['updatedAt'] as int?,
-      event: Event.fromJson(json['event']),
+      event: json['event'] == null
+          ? null
+          : Event.fromJson(json['event'] as Map<String, dynamic>),
+      anotherId: json['anotherId'] as int?,
+      channelId: json['channelId'] as int?,
+      confirmationId: json['confirmationId'] as String?,
     );
 
 Map<String, dynamic> _$TextMessageToJson(TextMessage instance) {
-  final val = <String, dynamic>{
-    'author': instance.author?.toJson(),
-    'event': instance.event?.toJson(),
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -39,6 +41,8 @@ Map<String, dynamic> _$TextMessageToJson(TextMessage instance) {
     }
   }
 
+  writeNotNull('author', instance.author?.toJson());
+  writeNotNull('event', instance.event?.toJson());
   writeNotNull('createdAt', instance.createdAt);
   val['id'] = instance.id;
   writeNotNull('metadata', instance.metadata);
@@ -49,6 +53,9 @@ Map<String, dynamic> _$TextMessageToJson(TextMessage instance) {
   writeNotNull('status', _$StatusEnumMap[instance.status]);
   val['type'] = _$MessageTypeEnumMap[instance.type]!;
   writeNotNull('updatedAt', instance.updatedAt);
+  writeNotNull('anotherId', instance.anotherId);
+  writeNotNull('channelId', instance.channelId);
+  writeNotNull('confirmationId', instance.confirmationId);
   writeNotNull('previewData', instance.previewData?.toJson());
   val['text'] = instance.text;
   return val;
