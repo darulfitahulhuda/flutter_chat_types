@@ -5,7 +5,6 @@ import 'package:meta/meta.dart';
 part 'preview_data.g.dart';
 
 /// A class that represents data obtained from the web resource (link preview).
-///
 /// See https://github.com/flyerhq/flutter_link_previewer
 @JsonSerializable()
 @immutable
