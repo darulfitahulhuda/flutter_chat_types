@@ -56,6 +56,7 @@ abstract class ImageMessage extends Message {
     Event? event,
     int? anotherId,
     String? confirmationId,
+    int? channelId,
   }) = _ImageMessage;
 
   /// Creates an image message from a map (decoded JSON).
@@ -74,6 +75,7 @@ abstract class ImageMessage extends Message {
     Status? status,
     int? updatedAt,
     int? anotherId,
+    int? channelId,
   }) =>
       _ImageMessage(
         author: author,
@@ -93,6 +95,7 @@ abstract class ImageMessage extends Message {
         uri: partialImage.uri,
         width: partialImage.width,
         anotherId: anotherId,
+        channelId: channelId,
       );
 
   /// Image height in pixels.
@@ -128,6 +131,7 @@ abstract class ImageMessage extends Message {
         uri,
         width,
         event,
+        channelId,
       ];
 
   @override
